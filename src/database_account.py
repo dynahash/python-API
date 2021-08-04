@@ -1,7 +1,7 @@
 import psycopg2
 import json
 
-dados = json.load(open("configs.json"))
+dados = json.load(open("../configs.json"))
 
 mydb = psycopg2.connect(
     database=dados["database"]["user"],

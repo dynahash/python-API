@@ -1,5 +1,5 @@
 from flask import Flask, request
-from checks.token_check import checkToken
+from src.checks.token_check import checkToken
 
 app = Flask('WannaEat')
 

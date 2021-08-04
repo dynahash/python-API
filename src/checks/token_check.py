@@ -1,6 +1,6 @@
 import json
 
-token_fix = json.load(open("configs.json"))
+token_fix = json.load(open("../configs.json"))
 
 def checkToken(token):
     if token == token_fix["token"]:
