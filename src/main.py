@@ -3,6 +3,7 @@ from src.checks.token_check import checkToken
 
 app = Flask('WannaEat')
 
+
 @app.route("/primaryRoute", methods=["GET"])
 def primary_route():
     token = request.args.get('token')
