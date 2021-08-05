@@ -1,9 +1,9 @@
 import json
 
-token_fix = json.load(open("../configs.json"))
+token_fix = json.load(open("../configs.json")) # Collect data from .json file
 
 
-def checkToken(token):
+def checkToken(token): # function token validator
     if token == token_fix["token"]:
         return {True: token_fix["token"]}
     else:
