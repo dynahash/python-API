@@ -1,12 +1,13 @@
 import psycopg2
-import json
+from decouple import config
 
-dados = json.load(open("../configs.json"))
+
+database_user, database_password = config("DATABASE_USER"), config("DATABASE_PASSWORD")
 
 mydb = psycopg2.connect(
-    database=dados["database"]["user"],
-    user=dados["database"]["user"],
-    password=dados["database"]["password"],
+    database=database_user,
+    user=database_user,
+    password=database_password,
     host='motty.db.elephantsql.com',
     port='5432'
 )
