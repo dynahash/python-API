@@ -22,11 +22,5 @@ def registerr():  # route function
     elif "False" in check_password:
         return check_password
 
-
     # -------------------------------------------------------------------
-
-
-
-    dados = "Conta criada com sucesso!"
-
-    return dados
+    return "Conta criada com sucesso!"
