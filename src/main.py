@@ -8,8 +8,6 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/register", methods=["GET"])
 def register():  # route function
-    if request.method == "GET":
-        print(str(registerr()).encode('utf-8', 'ignore').decode('utf-8'))
-        return str(registerr()).encode('utf-8', 'ignore').decode('utf-8')
+    return str(registerr()).encode('utf-8', 'ignore').decode('utf-8')
 
 app.run()

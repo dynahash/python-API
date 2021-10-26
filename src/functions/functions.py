@@ -1,9 +1,26 @@
-from flask import Flask, request  # library to create API
+from flask import request  # library to create API
 from src.checks.token_check import checkToken  # Import function token validator
 from src.functions.password import password_filter
-import re
+import psycopg2
+from decouple import config
+
+
+
 
 def registerr():  # route function
+
+    database_user, database_password = config("DATABASE_USER"), config("DATABASE_PASSWORD")
+
+    mydb = psycopg2.connect(
+        database=database_user,
+        user=database_user,
+        password=database_password,
+        host='motty.db.elephantsql.com',
+        port='5432'
+    )
+
+    cursor = mydb.cursor()
+
     token = request.args.get('token')  # GET token argument
     user = request.args.get('user')  # GET user argument
     senha = request.args.get('senha')  # GET senha argument
@@ -31,4 +48,18 @@ def registerr():  # route function
     else:
         return ["False", "Nenhum E-mail foi detectado."]
     # -------------------------------------------------------------------
+    sqlinsert = f"SELECT user_name FROM register WHERE user_name = '{user}'"
+
+    cursor.execute(sqlinsert)
+    if cursor.fetchone() == None:
+        pass
+    else:
+        return ["False", "Já existe alguém com esse nome de usuário"]
+
+    sqlinsert = f"INSERT INTO register (user_name, user_password, user_email, matricula) VALUES (%s, %s, %s, %s)"
+    dados = (user, senha, email, nmatricula)
+
+    cursor.execute(sqlinsert, dados)
+    mydb.commit()
+
     return ["True", "Conta criada com sucesso!"]

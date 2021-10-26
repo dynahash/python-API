@@ -12,4 +12,6 @@ mydb = psycopg2.connect(
     port='5432'
 )
 
+cursor = mydb.cursor()
+
 # This file is currently in unitility
