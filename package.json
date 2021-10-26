@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.24.0",
-    "blunder-js": "^0.4.0"
-  }
-}
