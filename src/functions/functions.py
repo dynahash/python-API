@@ -10,8 +10,12 @@ def registerr():  # route function
     csenha = request.args.get('csenha')  # GET csenha argument
     email = request.args.get('email')  # GET email argument
     nmatricula = request.args.get('nmatricula')  # GET matricula argument
-
-
+    lista = [token, user, senha, csenha, email, nmatricula]
+    for i in lista:
+        if len(i) > 20 and email != i:
+            return ["False", "nenhum campo deve haver mais de 20 caracteres"]
+    if '' in lista:
+        return ["False", "Preencha todos os campos!"]
     check_token = checkToken(token)  # token validator
     check_password = password_filter(senha, csenha)
     # -------------------------------------------------------------------
@@ -22,5 +26,9 @@ def registerr():  # route function
     elif "False" in check_password:
         return check_password
 
+    if "@" in email:
+        pass
+    else:
+        return ["False", "Nenhum E-mail foi detectado."]
     # -------------------------------------------------------------------
-    return "Conta criada com sucesso!"
+    return ["True", "Conta criada com sucesso!"]
